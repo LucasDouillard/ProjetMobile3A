@@ -12,17 +12,17 @@
         tools:layout="@layout/fragment_card_list">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/navigateToCardDetailFragment"
+            app:destination="@id/CardDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
+        android:id="@+id/CardDetailFragment"
         android:name="com.example.projetmobile.SecondFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            android:id="@+id/navigateToCardListFragment"
             app:destination="@id/CardListFragment" />
     </fragment>
 </navigation>

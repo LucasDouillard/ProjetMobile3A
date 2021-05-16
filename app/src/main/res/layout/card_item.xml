@@ -12,13 +12,16 @@
         android:layout_height="wrap_content"
         tools:text="TEST AFFICHAGE TEXTE"
         android:textColor="@color/black"
-        android:textAlignment="center"
+        android:textAlignment="textStart"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
 
         />
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

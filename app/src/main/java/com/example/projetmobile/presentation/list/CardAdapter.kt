@@ -1,14 +1,16 @@
 package com.example.projetmobile.presentation.list
 
+import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projetmobile.R
 
-class CardAdapter(private var dataSet: List<Card>) :
-    RecyclerView.Adapter<CardAdapter.ViewHolder>() {
+class CardAdapter(private var dataSet: List<Card>,val listener:((Card) -> Unit)? =null) : RecyclerView.Adapter<CardAdapter.ViewHolder>() {
+
 
     /**
      * Provide a reference to the type of views that you are using
@@ -45,6 +47,9 @@ class CardAdapter(private var dataSet: List<Card>) :
         // contents of the view with that element
         val card:Card=dataSet[position]
         viewHolder.textView.text = card.name
+        viewHolder.itemView.setOnClickListener{
+            listener?.invoke(card)
+        }
 
 
     }
