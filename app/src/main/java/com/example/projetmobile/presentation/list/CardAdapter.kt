@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projetmobile.R
 
-class CardAdapter(private var dataSet: List<Card>,val listener:((Card) -> Unit)? =null) : RecyclerView.Adapter<CardAdapter.ViewHolder>() {
+class CardAdapter(private var dataSet: List<Card>,val listener:((String) -> Unit)? =null) : RecyclerView.Adapter<CardAdapter.ViewHolder>() {
 
 
     /**
@@ -48,7 +48,7 @@ class CardAdapter(private var dataSet: List<Card>,val listener:((Card) -> Unit)?
         val card:Card=dataSet[position]
         viewHolder.textView.text = card.name
         viewHolder.itemView.setOnClickListener{
-            listener?.invoke(card)
+            listener?.invoke(card.cardId)
         }
 
 

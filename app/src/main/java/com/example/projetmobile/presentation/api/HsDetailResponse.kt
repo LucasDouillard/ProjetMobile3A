@@ -1,7 +1,6 @@
-package com.example.projetmobile.presentation.list
+package com.example.projetmobile.presentation.api
 
-data class Card(
-
+class HsDetailResponse (
     val cardId : String,
     val name : String,
     val cardSet : String,
@@ -17,4 +16,4 @@ data class Card(
     val attack : String,
     val health : String,
     val race : String
-    )
+)
