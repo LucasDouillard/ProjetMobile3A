@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -28,11 +31,19 @@ import retrofit2.converter.gson.GsonConverterFactory
 class CardListFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
+    private lateinit var loader: ProgressBar
+    private lateinit var errorText: TextView
+
+    val set: String = arguments?.getString("set")?:"NULL"
+
     private val adapter = CardAdapter(listOf(), ::onClickedCard)
 
 
 
     private val viewModel:CardListViewModel by viewModels()
+
+
+
 
 
     override fun onCreateView(
@@ -49,6 +60,8 @@ class CardListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView = view.findViewById(R.id.card_recyclerview)
+        loader = view.findViewById(R.id.card_loader)
+        errorText = view.findViewById(R.id.card_error)
 
 
         recyclerView.apply {
@@ -56,9 +69,16 @@ class CardListFragment : Fragment() {
             adapter = this@CardListFragment.adapter
         }
 
+        viewModel.callApi(arguments?.getString("set")?:"NULL")
 
-        viewModel.cardList.observe(viewLifecycleOwner, Observer { list->
-            adapter.updateList(list)
+        viewModel.cardList.observe(viewLifecycleOwner, Observer { cardModel->
+            loader.isVisible = cardModel is CardLoader
+            errorText.isVisible = cardModel is CardError
+
+            if(cardModel is CardSuccess) {
+                adapter.updateList(cardModel.cardList)
+            }
+
 
         })
 

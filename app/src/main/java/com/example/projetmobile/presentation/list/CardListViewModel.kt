@@ -9,28 +9,32 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CardListViewModel : ViewModel(){
+class CardListViewModel() : ViewModel(){
+
+
     
-    val cardList : MutableLiveData<List<Card>> = MutableLiveData()
+    val cardList : MutableLiveData<CardModel> = MutableLiveData()
 
-    init{
-        callApi()
-    }
+    var set:String = "classic"
 
-    private fun callApi() {
-        Singletons.hsApi.getCardList("bf7c3ced5bmsh161ba77a16443fep14bcc7jsn294e5fd5606b", "frFR","1").enqueue(object:
-            Callback<HsListResponse> {
-            override fun onFailure(call: Call<HsListResponse>, t: Throwable) {
-                TODO("Not yet implemented")
+
+   public fun callApi(set:String) {
+        cardList.value = CardLoader
+        Singletons.hsApi.getCardList(set,"bf7c3ced5bmsh161ba77a16443fep14bcc7jsn294e5fd5606b", "frFR","1").enqueue(object:
+            Callback<List<Card>> {
+            override fun onFailure(call: Call<List<Card>>, t: Throwable) {
+                cardList.value = CardError
             }
 
-            override fun onResponse(call: Call<HsListResponse>, response: Response<HsListResponse>) {
+            override fun onResponse(call: Call<List<Card>>, response: Response<List<Card>>) {
                 if(response.isSuccessful && response.body() !=null){
-                    val hsListResponse : HsListResponse = response.body()!!
+                    val hsListResponse : List<Card> = response.body()!!
 
-                    cardList.value = hsListResponse.Naxxramas
+                    cardList.value = CardSuccess(hsListResponse)
                     //adapter.updateList(hsResponse.Classic)
                 //    adapter.updateList(hsListResponse.Naxxramas)
+                } else {
+                    cardList.value = CardError
                 }
             }
         })

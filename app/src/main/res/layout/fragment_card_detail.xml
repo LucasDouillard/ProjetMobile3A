@@ -21,16 +21,15 @@
 
     <ImageView
         android:id="@+id/card_img"
-        android:layout_width="283dp"
-        android:layout_height="389dp"
+        android:layout_width="247dp"
+        android:layout_height="329dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
 
 
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.018" />
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

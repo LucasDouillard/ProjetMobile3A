@@ -4,48 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.list.CardListFragment">
-
+    tools:context=".presentation.list.SetListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/card_recyclerview"
+        android:id="@+id/set_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="600dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1" />
-
-    <ProgressBar
-        android:id="@+id/card_loader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-
-    <TextView
-        android:id="@+id/card_error"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/error_generic"
         android:textAlignment="center"
-        android:textColor="#FF0101"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_bias="1" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="370dp"
         android:layout_height="70dp"
         android:fontFamily="sans-serif-medium"
-        android:text="Choisissez maintenant une carte de cette extension"
+        android:text="Bienvenue !! Veuillez choisir l'extension d'Hearthstone qui vous intéresse"
         android:textAlignment="center"
         android:textColor="#FF9800"
         android:textSize="18sp"
@@ -53,5 +30,5 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="16dp"
         tools:ignore="MissingConstraints" />
-</androidx.constraintlayout.widget.ConstraintLayout>
 
+</androidx.constraintlayout.widget.ConstraintLayout>
