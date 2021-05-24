@@ -16,5 +16,6 @@ data class Card(
     val spellSchool : String,
     val attack : String,
     val health : String,
-    val race : String
+    val race : String,
+    val img : String
     )

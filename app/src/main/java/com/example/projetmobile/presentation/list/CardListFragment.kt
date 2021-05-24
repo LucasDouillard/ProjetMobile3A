@@ -30,7 +30,7 @@ class CardListFragment : Fragment() {
 
 
 
-    private val layoutManager = LinearLayoutManager(context)
+
 
 
     override fun onCreateView(
@@ -50,7 +50,7 @@ class CardListFragment : Fragment() {
 
 
         recyclerView.apply {
-            layoutManager = this@CardListFragment.layoutManager
+            layoutManager = LinearLayoutManager(context)
             adapter = this@CardListFragment.adapter
         }
 
@@ -68,18 +68,7 @@ class CardListFragment : Fragment() {
                     adapter.updateList(hsListResponse.Naxxramas)
                 }
             }
-
         })
-
-
-//        val cardList = arrayListOf<Card>().apply {
-//            add(Card("Nat paggle"))
-//            add(Card("Le roi liche"))
-//            add(Card("Chasse marée murloc"))
-//        }
-
-
-//        adapter.updateList(cardList)
     }
     private fun onClickedCard(cardId: String) {
             findNavController().navigate(R.id.navigateToCardDetailFragment, bundleOf(

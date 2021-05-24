@@ -1,13 +1,16 @@
 package com.example.projetmobile.presentation.detail
 
 import android.os.Bundle
+import android.text.Html
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.projetmobile.R
 import com.example.projetmobile.presentation.Singletons
 import com.example.projetmobile.presentation.api.HsDetailResponse
@@ -17,10 +20,15 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+@Suppress("DEPRECATION")
 class CardDetailFragment : Fragment() {
 
 
     private lateinit var textViewName: TextView
+    private lateinit var imageView: ImageView
+
+
+
 
 
     override fun onCreateView(
@@ -35,6 +43,7 @@ class CardDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         textViewName = view.findViewById(R.id.card_detail_name)
+        imageView = view.findViewById(R.id.card_img)
         callApi()
         }
 
@@ -48,7 +57,13 @@ class CardDetailFragment : Fragment() {
 
             override fun onResponse(call: Call<List<HsDetailResponse>>, response: Response<List<HsDetailResponse>>) {
                 if(response.isSuccessful && response.body() !=null){
-                    textViewName.text = "Coût en mana : "+response.body()!!.get(0).cost+"\nTexte : "+response.body()!!.get(0).text
+                    //textViewName.text = "Coût en mana : "+response.body()!!.get(0).cost+"\nTexte : "+response.body()!!.get(0).text
+                    textViewName.setText(Html.fromHtml("<h2>"+response.body()!!.get(0).name+"</h2><br><p>"+response.body()!!.get(0).text+"</p>"+"<br>Cout en Mana : "+response.body()!!.get(0).cost));
+                    Glide
+                        .with(imageView)
+                        .load(response.body()!!.get(0).img)
+                        .centerCrop()
+                        .into(imageView);
 
                 }
             }

@@ -1,6 +1,7 @@
 package com.example.projetmobile.presentation.api
 
 class HsDetailResponse (
+
     val cardId : String,
     val name : String,
     val cardSet : String,
@@ -15,5 +16,6 @@ class HsDetailResponse (
     val spellSchool : String,
     val attack : String,
     val health : String,
-    val race : String
+    val race : String,
+    val img : String
 )
