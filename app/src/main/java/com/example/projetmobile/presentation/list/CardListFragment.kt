@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,7 +32,7 @@ class CardListFragment : Fragment() {
 
 
 
-
+    private val viewModel:CardListViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -55,20 +57,11 @@ class CardListFragment : Fragment() {
         }
 
 
+        viewModel.cardList.observe(viewLifecycleOwner, Observer { list->
+            adapter.updateList(list)
 
-        Singletons.hsApi.getCardList("bf7c3ced5bmsh161ba77a16443fep14bcc7jsn294e5fd5606b", "frFR","1").enqueue(object:Callback<HsListResponse>{
-            override fun onFailure(call: Call<HsListResponse>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onResponse(call: Call<HsListResponse>, response: Response<HsListResponse>) {
-                if(response.isSuccessful && response.body() !=null){
-                    val hsListResponse : HsListResponse = response.body()!!
-                    //adapter.updateList(hsResponse.Classic)
-                    adapter.updateList(hsListResponse.Naxxramas)
-                }
-            }
         })
+
     }
     private fun onClickedCard(cardId: String) {
             findNavController().navigate(R.id.navigateToCardDetailFragment, bundleOf(
